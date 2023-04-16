@@ -3,16 +3,16 @@
 # PROJECT WEEK 1
 
 ### Question 1
+How many users do we have?
 
-* How many users do we have?
-
-We have 130 users
+* We have 130 users
 
 ``` SELECT COUNT( DISTINCT user_guid) FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__USERS ```
 
-* On average, how many orders do we receive per hour?
+### Question 1
+On average, how many orders do we receive per hour?
 
-On average we receive around 7.53 orders
+* On average we receive around 7.53 orders
 
 ``` 
   SELECT 
@@ -21,9 +21,10 @@ On average we receive around 7.53 orders
   FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__ORDERS;
 ``` 
 
-* On average, how long does an order take from being placed to being delivered?
+### Question 1
+On average, how long does an order take from being placed to being delivered?
 
-On average it takes around 3.89 days to deliver an order
+* On average it takes around 3.89 days to deliver an order
 
 ``` 
   SELECT
@@ -32,7 +33,10 @@ On average it takes around 3.89 days to deliver an order
   WHERE status = 'delivered';
 ``` 
 
-* How many users have only made one purchase? Two purchases? Three+ purchases?
+### Question 1
+How many users have only made one purchase? Two purchases? Three+ purchases?
 
+* 
 
-* On average, how many unique sessions do we have per hour?
+### Question 1
+On average, how many unique sessions do we have per hour?
