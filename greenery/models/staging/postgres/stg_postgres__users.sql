@@ -1,16 +1,20 @@
 WITH base AS(
   SELECT
     *
-  FROM {{source('postgres','addresses')}}
+  FROM {{source('postgres','users')}}
 ),
 
 rename_recast AS(
   SELECT
-    address_id AS address_guid,
-    address,
-    state,
-    lpad(zipcode,5, 0) AS zip_code,
-    country
+    user_id AS user_guid,
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    created_at,
+    updated_at,
+    address_id AS address_guid
+
   FROM base
 )
 
