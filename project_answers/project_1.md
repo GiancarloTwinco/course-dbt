@@ -52,5 +52,5 @@ On average, how many unique sessions do we have per hour?
   )
   
   SELECT round(AVG(sessions_per_hour), 2)
-  FROM unique_sessions_per_hour;
+  FROM sess_per_hour;
 ```
