@@ -7,7 +7,9 @@ How many users do we have?
 
 * We have 130 users
 
-``` SELECT COUNT( DISTINCT user_guid) FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__USERS ```
+``` 
+  SELECT COUNT( DISTINCT user_guid) FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__USERS 
+```
 
 ### Question 2
 On average, how many orders do we receive per hour?
