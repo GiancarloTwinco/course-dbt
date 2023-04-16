@@ -9,7 +9,7 @@ How many users do we have?
 
 ``` SELECT COUNT( DISTINCT user_guid) FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__USERS ```
 
-### Question 1
+### Question 2
 On average, how many orders do we receive per hour?
 
 * On average we receive around 7.53 orders
@@ -21,7 +21,7 @@ On average, how many orders do we receive per hour?
   FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__ORDERS;
 ``` 
 
-### Question 1
+### Question 3
 On average, how long does an order take from being placed to being delivered?
 
 * On average it takes around 3.89 days to deliver an order
@@ -33,10 +33,24 @@ On average, how long does an order take from being placed to being delivered?
   WHERE status = 'delivered';
 ``` 
 
-### Question 1
+### Question 4
 How many users have only made one purchase? Two purchases? Three+ purchases?
 
 * 
 
-### Question 1
+### Question 5
 On average, how many unique sessions do we have per hour?
+* On average 16.33 we have unique sessions per hour 
+
+```
+  WITH sess_per_hour AS (
+    SELECT 
+        DATE_TRUNC(hour, created_at) AS created_hour,
+        COUNT(DISTINCT session_guid) AS sessions_per_hour
+    FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__EVENTS
+    GROUP BY created_hour
+  )
+  
+  SELECT round(AVG(sessions_per_hour), 2)
+  FROM unique_sessions_per_hour;
+```
