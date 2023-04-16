@@ -36,21 +36,59 @@ On average, how long does an order take from being placed to being delivered?
 ### Question 4
 How many users have only made one purchase? Two purchases? Three+ purchases?
 
-* 
-
-### Question 5
-On average, how many unique sessions do we have per hour?
-* On average 16.33 we have unique sessions per hour 
+* Users with 1 order are: 25
+* Users with 1 order are: 28
+* Users with 1 order are: 71
 
 ```
-  WITH sess_per_hour AS (
+  WITH base AS(
+    SELECT * FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__ORDERS
+  ),
+  
+  count_orders AS(
     SELECT 
-        DATE_TRUNC(hour, created_at) AS created_hour,
-        COUNT(DISTINCT session_guid) AS sessions_per_hour
-    FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__EVENTS
-    GROUP BY created_hour
+      user_guid,
+      RANK() OVER (PARTITION BY user_guid ORDER BY created_at) AS number_of_orders
+    FROM BASE
+    ),
+    
+  calc_max_orders AS(
+    SELECT
+      DISTINCT user_guid,
+      MAX(number_of_orders) AS max_orders
+    FROM count_orders
+    GROUP BY 1
+  ),
+  
+  group_by_user AS(
+    SELECT 
+      CASE 
+        WHEN max_orders=1 THEN 1
+        WHEN max_orders=2 THEN 2
+        ELSE 3
+      END AS tot_orders,
+      COUNT(*) AS number_of_cases
+    FROM calc_max_orders
+    GROUP BY 1
   )
   
-  SELECT round(AVG(sessions_per_hour), 2)
-  FROM sess_per_hour;
+  SELECT * FROM group_by_user
+  ORDER BY 1
+  ```
+  
+  ### Question 5
+  On average, how many unique sessions do we have per hour?
+  * On average 16.33 we have unique sessions per hour 
+  
+  ```
+    WITH sess_per_hour AS (
+      SELECT 
+          DATE_TRUNC(hour, created_at) AS created_hour,
+          COUNT(DISTINCT session_guid) AS sessions_per_hour
+      FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.STG_POSTGRES__EVENTS
+      GROUP BY created_hour
+    )
+    
+    SELECT round(AVG(sessions_per_hour), 2)
+    FROM sess_per_hour;
 ```
