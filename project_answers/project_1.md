@@ -4,6 +4,4 @@
 
 ### Question 1
 
-'''
-SELECT COUNT( DISTINCT user_guid) FROM dev_db.giancarlogavottitwincocom.stg_postgres__users;
-'''
+''' SELECT COUNT( DISTINCT user_guid) FROM dev_db.giancarlogavottitwincocom.stg_postgres__users; '''
