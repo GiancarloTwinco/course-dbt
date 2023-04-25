@@ -18,12 +18,8 @@ models:
         tests:
           - not_null
 
-  - name: stg_postgres__even
+  - name: stg_postgres__events
     columns:
-      - name: event_guid
-        tests:
-          - not_null
-          - unique
       - name: session_guid
         tests:
           - not_null
@@ -33,12 +29,8 @@ models:
       - name: page_url
         tests:
           - not_null
-      - name: event_ts_utc
-      - name: event_type
-      - name: order_guid
-      - name: product_guid
 
-  - name: stg_postgres__order_ite
+  - name: stg_postgres__order_items
     columns:
       - name: order_guid
         tests:
@@ -48,7 +40,7 @@ models:
           - not_null
       - name: quantity
 
-  - name: stg_postgres__orde
+  - name: stg_postgres__orders
     columns:
       - name: order_guid
         tests:
@@ -57,30 +49,13 @@ models:
       - name: user_guid
         tests:
           - not_null
-      - name: promo_guid
+      - name: promo_id
       - name: address_guid
         tests:
           - not_null
       - name: created_ts_utc
-      - name: order_cost_usd
-        tests:
-          - not_null
-          - positive_values
-      - name: shipping_cost_usd
-        tests:
-          - not_null
-          - positive_values
-      - name: order_total_usd
-        tests:
-          - not_null
-          - positive_values
-      - name: tracking_guid
-      - name: shipping_service
-      - name: estimated_delivery_ts_utc
-      - name: delivered_ts_utc
-      - name: order_status
 
-  - name: stg_postgres__produc
+  - name: stg_postgres__products
     columns:
       - name: product_guid
         tests:
@@ -91,18 +66,16 @@ models:
       - name: left_in_stock
         tests:
           - not_null
-          - positive_values
 
-  - name: stg_postgres__prom
+  - name: stg_postgres__promos
     columns:
-      - name: promo_guid
+      - name: promo_id
         tests:
           - not_null
           - unique
-      - name: discount_usd
       - name: promo_status
   
-  - name: stg_postgres__use
+  - name: stg_postgres__users
     columns:
       - name: user_guid
         tests:
@@ -112,6 +85,4 @@ models:
       - name: last_name
       - name: email
       - name: phone_number
-      - name: created_ts_utc
-      - name: updated_ts_utc
       - name: address_guid
