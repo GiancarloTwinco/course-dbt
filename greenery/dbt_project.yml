@@ -38,6 +38,4 @@ models:
       postgres:
         +materialized: view
     marts:
-      core:
-        dim_fct_tables:
-          +materialized: table
+      +materialized: table
