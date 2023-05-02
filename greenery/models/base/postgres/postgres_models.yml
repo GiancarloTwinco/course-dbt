@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_postgres__address
+  - name: stg_postgres__addresses
     columns:
       - name: address_guid
         tests:

@@ -32,7 +32,7 @@ Which products had their inventory change from week 1 to week 2?
 
 ``` 
   SELECT
-    disctinct(product_guid), name 
+    distinct(product_guid), name 
   FROM DEV_DB.DBT_GIANCARLOGAVOTTITWINCOCAPITALCOM.SNAPSHOT_PRODUCTS
   WHERE dbt_valid_to IS NOT NULL
 ``` 
